@@ -1,75 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { Footer } from '../Components/Footer'
+import { Navbar1 } from '../Components/Navbar1'
+import { Topbar } from '../Components/Topbar'
 
 export const Checkout = () => {
+    const navigate = useNavigate();
+    var email = localStorage.getItem('email');
+    if(email == undefined) {
+        alert("login First")
+        navigate('/login');
+    }
     return (
         <React.Fragment>
 
-            {/* <!-- Topbar Start --> */}
-            <div class="container-fluid">
-                <div class="row bg-secondary py-2 px-xl-5">
-                    <div class="col-lg-6 d-none d-lg-block">
-                        <div class="d-inline-flex align-items-center">
-                            <a class="text-dark" href="">FAQs</a>
-                            <span class="text-muted px-2">|</span>
-                            <a class="text-dark" href="">Help</a>
-                            <span class="text-muted px-2">|</span>
-                            <a class="text-dark" href="">Support</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 text-center text-lg-right">
-                        <div class="d-inline-flex align-items-center">
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a class="text-dark pl-2" href="">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row align-items-center py-3 px-xl-5">
-                    <div class="col-lg-3 d-none d-lg-block">
-                        <Link to="/" className="text-decoration-none">
-                            <h1 className="m-0 display-5 font-weight-semi-bold"><span className="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
-                        </Link>
-                    </div>
-                    <div class="col-lg-6 col-6 text-left">
-                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for products" />
-                                <div class="input-group-append">
-                                    <span class="input-group-text bg-transparent text-primary">
-                                        <i class="fa fa-search"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-3 col-6 text-right">
-                        <a href="" class="btn border">
-                            <i class="fas fa-heart text-primary"></i>
-                            <span class="badge">0</span>
-                        </a>
-                        <a href="" class="btn border">
-                            <i class="fas fa-shopping-cart text-primary"></i>
-                            <span class="badge">0</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {/* <!-- Topbar End --> */}
-
-
+            <Topbar/>
             {/* <!-- Navbar Start --> */}
             <div class="container-fluid">
                 <div class="row border-top px-xl-5">
@@ -145,7 +90,7 @@ export const Checkout = () => {
                     </div>
                 </div>
             </div>
-            {/* <!-- Page Header End --> */}
+            {/* <!-- Page Header End -->
 
 
             {/* <!-- Checkout Start --> */}
@@ -273,31 +218,31 @@ export const Checkout = () => {
                             <div class="card-body">
                                 <h5 class="font-weight-medium mb-3">Products</h5>
                                 <div class="d-flex justify-content-between">
-                                    <p>Colorful Stylish Shirt 1</p>
-                                    <p>$150</p>
+                                    <p>Pendent</p>
+                                    <p>RS 1,50,000</p>
                                 </div>
-                                <div class="d-flex justify-content-between">
+                                {/* <div class="d-flex justify-content-between">
                                     <p>Colorful Stylish Shirt 2</p>
                                     <p>$150</p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p>Colorful Stylish Shirt 3</p>
                                     <p>$150</p>
-                                </div>
+                                </div> */}
                                 <hr class="mt-0" />
                                 <div class="d-flex justify-content-between mb-3 pt-1">
                                     <h6 class="font-weight-medium">Subtotal</h6>
-                                    <h6 class="font-weight-medium">$150</h6>
+                                    <h6 class="font-weight-medium">RS 1,50,000</h6>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <h6 class="font-weight-medium">Shipping</h6>
-                                    <h6 class="font-weight-medium">$10</h6>
+                                    <h6 class="font-weight-medium">RS 500</h6>
                                 </div>
                             </div>
                             <div class="card-footer border-secondary bg-transparent">
                                 <div class="d-flex justify-content-between mt-2">
                                     <h5 class="font-weight-bold">Total</h5>
-                                    <h5 class="font-weight-bold">$160</h5>
+                                    <h5 class="font-weight-bold">RS 1,50,500</h5>
                                 </div>
                             </div>
                         </div>
@@ -335,75 +280,7 @@ export const Checkout = () => {
             {/* <!-- Checkout End --> */}
 
 
-            {/* <!-- Footer Start --> */}
-            <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
-                <div class="row px-xl-5 pt-5">
-                    <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                        <a href="" class="text-decoration-none">
-                            <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Shopper</h1>
-                        </a>
-                        <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore amet erat.</p>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                        <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-                        <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
-                    </div>
-                    <div class="col-lg-8 col-md-12">
-                        <div class="row">
-                            <div class="col-md-4 mb-5">
-                                <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
-                                <div class="d-flex flex-column justify-content-start">
-                                    <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                                    <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                                    <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                                    <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                                    <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                                    <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-5">
-                                <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
-                                <div class="d-flex flex-column justify-content-start">
-                                    <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                                    <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                                    <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                                    <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                                    <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                                    <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-5">
-                                <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-                                <form action="">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
-                                            required="required" />
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row border-top border-light mx-xl-5 py-4">
-                    <div class="col-md-6 px-xl-0">
-                        <p class="mb-md-0 text-center text-md-left text-dark">
-                            &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
-                            by
-                            <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a><br />
-                            Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                        </p>
-                    </div>
-                    <div class="col-md-6 px-xl-0 text-center text-md-right">
-                        <img class="assets/img-fluid" src="assets/img/payments.png" alt="" />
-                    </div>
-                </div>
-            </div>
-            {/* <!-- Footer End --> */}
+            <Footer/>
 
 
             {/* <!-- Back to Top --> */}

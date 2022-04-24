@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Routes } from 'react-router-dom'
+import { Role } from '../admin/Role'
 import { Checkout } from './Checkout'
 import { Contact } from './Contact'
 import { Home } from './Home'
@@ -22,6 +23,7 @@ export const RouterPage = () => {
                     <Route path='/contact' element={<Contact/>} />
                     <Route path='/register' element={<Register/>} />
                     <Route path='/login' element={<Login/>} />
+                    <Route path='/role' element={<Role/>} />
                 </Routes>
            
         </div>

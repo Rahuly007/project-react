@@ -1,7 +1,43 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Login = () => {
+    
+    const navigate = useNavigate();
+    const [input, setinput] = useState({
+        email: "",
+        password: ""
+    })
+
+    const handleChange = (e) => {
+
+        setinput((prevInput) => {
+            return {
+                ...prevInput,
+                [e.target.name]: e.target.value
+            }
+        })
+
+
+    }
+    
+    const loginUser = (e) => {
+        e.preventDefault()
+        
+        axios.post('http://localhost:3000/login',input).then((res)=>{
+           if(res.data.status==200){
+               const notify = (() => toast(res.data.msg))();
+               localStorage.setItem('email',res.data.data)
+               navigate('/')
+               
+           }else{
+               alert(res.data.msg)
+           }
+        })
+    }
     return (
         <React.Fragment>
             <section className="vh-100" style={{ backgroundColor: "#9A616D" }}>
@@ -31,20 +67,20 @@ export const Login = () => {
 
                                                 <div className="form-outline mb-4">
                                                     <label className="form-label" for="form2Example17">Email address</label>
-                                                    <input type="email" id="form2Example17" className="form-control form-control-lg" />
+                                                    <input type="email" id="form2Example17" className="form-control form-control-lg" name='email' value={input.email} onChange={handleChange} />
                                                 </div>
 
                                                 <div className="form-outline mb-4">
                                                     <label className="form-label" for="form2Example27">Password</label>
-                                                    <input type="password" id="form2Example27" className="form-control form-control-lg" />
+                                                    <input type="password" id="form2Example27" className="form-control form-control-lg" name='password' value={input.password} onChange={handleChange} />
                                                 </div>
 
                                                 <div className="pt-1 mb-4">
-                                                    <button className="btn btn-dark btn-lg btn-block" type="button">Login</button>
+                                                    <button className="btn btn-dark btn-lg btn-block" type="button" onClick={loginUser} >Login</button>
                                                 </div>
 
                                                 <a className="small text-muted" href="#!">Forgot password?</a>
-                                                <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>Don't have an account? <Link to="/register" style={{color: "#393f81"}}>Register here</Link></p>
+                                                <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>Don't have an account? <Link to="/register" style={{ color: "#393f81" }}>Register here</Link></p>
                                                 <a href="#!" className="small text-muted">Terms of use.</a>
                                                 <a href="#!" className="small text-muted">Privacy policy</a>
                                             </form>
